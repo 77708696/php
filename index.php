@@ -1,5 +1,11 @@
 <?php
 
+
+var_dump( stripos( $_SERVER['HTTP_HOST'] , 'yipu.com.cn') );
+
+print_r($_SERVER);
+
+exit();
 echo "<br><br><br><br><br>";
 phpinfo();
 exit();
