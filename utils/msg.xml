@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+<fields>
+  	<id>		<type>int</type>	<mapdb>a.id</mapdb>			<w>1</w></id>
+  	<messageid> <type>string</type>	<mapdb>msg_id</mapdb>		<w>1</w></messageid>
+  	<senderid>	<type>string</type>	<mapdb>from_uid</mapdb>		<w>1</w></senderid>
+  	<sender>	<type>string</type>	<mapdb>b.real_name</mapdb>	<w>0</w></sender>
+  </fields>
+  <sql>SELECT {0} 
+                    FROM introducation_msg AS a 
+                    INNER JOIN account_basic_detail AS b ON a.from_uid=b.user_id{1}{2}</sql>
+  <where> and a.to_uid=:userId</where>
+  <order> ORDER BY a.id DESC</order>
+
+</root>

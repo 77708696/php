@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<list>
+    <company>武汉xxx公司</company>
+    <user>
+        <name>张三</name>
+        <age sex="未知">a</age>
+        <height>1</height>
+    </user>
+    <user>
+        <name>李四</name>
+        <age sex="女">b</age>
+        <height>2</height>
+    </user>
+    <user>
+        <name>王五</name>
+        <age sex="男">c</age>
+        <height>3</height>
+    </user>
+    <town parent="0" id="1">台北</town>
+    <town parent="1" id="2">板桥</town>
+    <town parent="0" id="3">桃园</town>
+</list>
