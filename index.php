@@ -1,5 +1,9 @@
 <?php
 
+$str = 'www.yipu.com.cn';
+
+echo ltrim( strchr($str,'.'),'.' );
+exit();
 
 var_dump( stripos( $_SERVER['HTTP_HOST'] , 'yipu.com.cn') );
 
