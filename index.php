@@ -1,5 +1,6 @@
 <?php
-
+phpinfo();
+exit();
 $str = 'www.yipu.com.cn';
 
 echo ltrim( strchr($str,'.'),'.' );
@@ -11,8 +12,7 @@ print_r($_SERVER);
 
 exit();
 echo "<br><br><br><br><br>";
-phpinfo();
-exit();
+
 echo crc32("abc") . "\r\n";
 
 $binary = "11111001";

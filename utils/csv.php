@@ -1,6 +1,91 @@
 <?php
 
 header('Content-Type:text/html;charset=utf-8');
+$str = <<<eof
+chongqing,beijing;
+baoding,beijing;
+chengde,beijing;
+qinhuangdao,beijing;
+tangshan,beijing;
+anyang,shanghai	;
+luoyang,shanghai;
+nanyang,shanghai;
+zhengzhou,shanghai;
+zhumadian,shanghai;
+harbin,beijing;
+changchun,beijing;
+dalian,beijing;
+shenyang,beijing;
+jinan,beijing;
+liaocheng,beijing;
+qingdao,beijing;
+weifang,beijing;
+yantai,beijing;
+erds,beijing;
+hohhot,beijing;
+nanjing,shanghai;
+nantong,shanghai;
+suzhou,shanghai;
+wuxi,shanghai;
+xuzhou,shanghai;
+bangbu,shanghai;
+bozhou,shanghai;
+fuyang,shanghai;
+hefei,shanghai;
+wuhu,shanghai;
+taiyuan,beijing;
+xian,beijing;
+lanzhou,beijing;
+hangzhou,shanghai;
+ningbo,shanghai;
+shaoxing,shanghai;
+wenzhou,shanghai;
+ganzhou,shanghai;
+jiujiang,shanghai;
+jian,shanghai;
+nanchang,shanghai;
+jingzhou,shanghai;
+wuhan,shanghai;
+xiangyang,shanghai;
+yichang,shanghai;
+changsha,shanghai;
+hengyang,shanghai;
+guiyang,guangzhou;
+chengdu,guangzhou;
+kunming,guangzhou;
+yinchuan,beijing;
+lasa,beijing;
+gulin,guangzhou;
+liuzhou,guangzhou;
+nanning,guangzhou;
+dongguan,guangzhou;
+foshan,guangzhou;
+guangzhou,guangzhou;
+huizhou,guangzhou;
+zhuhai,guangzhou;
+fuzhou,guangzhou;
+longyan,guangzhou;
+quanzhou,guangzhou;
+xiamen,guangzhou;
+haikou,guangzhou;
+sanya,guangzhou;
+
+eof;
+
+$arr = explode(';',$str);
+$arr1 = array();
+
+foreach ($arr as $item)
+{
+    $v = explode(',', $item);
+    $v[0] = trim($v[0]);
+    if(empty($v[0]))
+        continue;
+    $arr1[ $v[0] ] = trim( $v[1] );
+}
+
+var_export($arr1);
+exit();
 
 $csvFile = '../list.csv';
 
@@ -13,7 +98,7 @@ while (($data = fgetcsv($handle))!==false)
 
 fclose($handle);
 array_shift($arr);
-print_r($arr);
+
 
 
 
@@ -28,6 +113,8 @@ eof;
 $glist = <<<eof
 %d=>array('ID'=>%d,'nTypeID'=>3,'nCtiyID'=>%d,'siteName'=>'58_%s__||',	'url'=>'http://m.exptime.org.cn/%s/fangchan/','rent_sort'=>1,'vid'=>8,'stype'=>'58com','ncutPH'=>0,'charset' => 'utf-8',   'url_list'=>str_replace(array('<a href="','"'), '',getlist0(%s,'~<a href=".+?"~is'))),
 eof;
+
+/*
 $i=26;
 foreach ($arr as $v){
     //echo "\r\nupdate yipucommon_district_58  set Domain='" .$v[3]."',nsite=1 where id=" .$v[0].";";
@@ -35,6 +122,37 @@ foreach ($arr as $v){
    // echo sprintf($glist,$v[0],$v[0],$v[0],$v[1],$v[2],'$html');
     echo "\r\n$i 2 * * * curl http://www.a.com.cn/{}/getlist_cf.php?ID=" . $v[0];
     $i++;
+}
+*/
+
+$glist_gj = <<<eof
+%d=>array('ID'=>%d,'nTypeID'=>%d,'nCtiyID'=>%d,'rent_sort'=>%d,'vid'=>%d,'stype'=>'ganji','siteName'=>'赶集网_%s%s','ncutPH'=>70,'charset' => 'utf-8',
+				'url'=>'http://%s.ganji.com/fang%d/',
+				'url_list'=>str_replace(array("<a class='list-info-title' target='_blank' href='/fang%d","' id="),array("http://%s.ganji.com/fang%d",""),getlist0(%s,"~<a class='list-info-title' target='_blank' href='/fang%d.+?' id=~is"))),
+eof;
+
+$crontab="%d %d * * *  curl  http://vip.yipu.com.cn/sp/task_gj.php?ID=%d\r\n";
+$j=30;
+foreach ($arr as $v){
+    //print_r($v);break;
+    $i = intval($v[0]).'01';
+    $i1 = intval($v[0]).'02';
+    $j++;
+    echo sprintf($crontab,$j,1,$i);
+    echo sprintf($crontab,$j,2,$i1);
+   // echo "\r\n/*-------".mb_convert_encoding($v[1],'UTF-8','GBK')."-------*/\r\n";
+   // echo sprintf($glist_gj,$i,$i,0,$v[0],1,20,mb_convert_encoding($v[1],'UTF-8','GBK'),'商铺出租',$v[5],6,6,$v[5],6,'$html',6) . "\r\n";
+   // echo sprintf($glist_gj,$i1,$i1,0,$v[0],2,20,mb_convert_encoding($v[1],'UTF-8','GBK'),'商铺出售',$v[5],7,7,$v[5],7,'$html',7) . "\r\n";
+    $i = intval($v[0]).'03';
+    $i1 = intval($v[0]).'04';
+    echo sprintf($crontab,$j,3,$i);
+    echo sprintf($crontab,$j,4,$i1);
+    
+  //  echo sprintf($glist_gj,$i,$i,1,$v[0],1,21,mb_convert_encoding($v[1],'UTF-8','GBK'),'写字楼出租',$v[5],8,8,$v[5],8,'$html',8) . "\r\n";
+  //  echo sprintf($glist_gj,$i1,$i1,1,$v[0],2,21,mb_convert_encoding($v[1],'UTF-8','GBK'),'写字楼出售',$v[5],9,9,$v[5],9,'$html',9) . "\r\n";
+    
+    
+    
 }
 
 
@@ -45,7 +163,7 @@ foreach ($arr as $v){
 
 
 
-
+//print_r($arr);
 
 
 
