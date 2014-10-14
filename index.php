@@ -19,3 +19,5 @@ $binary = "11111001";
 $hex = dechex(bindec($binary));
 echo $hex;
 echo print_r($_SERVER);
+
+
