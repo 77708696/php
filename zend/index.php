@@ -22,9 +22,7 @@ $arr = array();
 $arr[] = mb_convert_encoding('查询9006数据', "GBK",'UTF-8') ;
 for($i=0;$i<SUM;$i++){
     $runtime_start = microtime(true);
-    $url="http://192.168.30.191:9006/contact";
-    //$url = "http://localhost/oradtdev/web/app_dev.php/contact";
-    //$url="http://192.168.30.191/contact";
+    $url="http://www";
     $httpClient = new Zend_Http_Client($url, $httpRequestConfig);
     $httpClient->setHeaders($header);
     $params = array('vcardid'=>'Ac8XYmPa75pD73dv5h7PB8BqRttz79oo');
@@ -42,7 +40,7 @@ $arr = array();
 $arr[] = mb_convert_encoding('查询数据', "GBK",'UTF-8') ;
 for($i=0;$i<SUM;$i++){
     $runtime_start = microtime(true);
-    $url="http://192.168.30.191/contact";
+    $url="http://192.168.30.191/cct";
     $httpClient = new Zend_Http_Client($url, $httpRequestConfig);    
     $httpClient->setHeaders($header);
     $httpResponse = $httpClient->request("GET");
