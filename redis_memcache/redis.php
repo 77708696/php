@@ -1,11 +1,38 @@
 <?php
+
 $redis = new Redis();
 $redis->connect("192.168.30.191","6379");
 
-$redis->select("1");
+print_r($redis->zRange("zset",0,-1,true));
 
-$redis->set("userId:1001","huang");
+echo $redis->zRank('zset','one');
 
+exit();
+test($redis);
+
+/**
+ * 
+ * @param Redis $redis
+ */
+function test(& $redis){
+
+  print_r(  $redis->pipeline()->exec(array('cluster nodes')));
+}
+exit();
+//$redis->select("1");
+try{
+    $redis->set("X","huang");
+    
+
+    echo $redis->get("userId:1001");
+    echo $redis->get("X");
+    echo "aaa";
+}
+catch(RedisException $ex)
+{
+    echo $ex->getMessage();
+}
+exit();
 
 var_dump( $redis->exists("userId:1001") );
 

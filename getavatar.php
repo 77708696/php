@@ -9,19 +9,6 @@ $opts = array(
 $context = stream_context_create($opts);
 
 
-$file = file_get_contents('http://192.168.30.191/account/avatar?path=j2TMgzK8Yfk4NDuRpP6yFqZRepWTBA6mTHZKfIIM/BnxxSoZtUP20140925101937.jpg', false, $context);
+$file = file_get_contents('http://192.168.30.191/account/avatar?path=A2txslhbTjsRW5GZMrluD9sRzl5oW00000000013', false, $context);
 
-//var_dump($context);
-
-$jsondata = json_decode($file);
-
-
-if(empty($jsondata))
-{
-    header('Content-type: image/jpg');
-    echo $file;
-}
-else
-{
-    var_dump($jsondata);
-}
+file_put_contents("a.jpg", $file);
